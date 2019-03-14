@@ -1,0 +1,8 @@
+{
+  "definitions": {
+    "age": {
+      "type": "integer",
+      "default": 18
+    }
+  }
+}

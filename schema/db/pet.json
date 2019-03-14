@@ -1,0 +1,38 @@
+{
+  "type": "object",
+  "required": [
+    "name",
+    "description"
+  ],
+  "properties": {
+    "id": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "description": "Pet name"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000
+    },
+    "dob": {
+      "type": "string",
+      "format": "date",
+      "default": "2000-01-01"
+    }
+  },
+  "_db": {
+    "name": "pet",
+    "indexes": [
+      {
+        "columns": [
+          "name"
+        ]
+      }
+    ]
+  }
+}
