@@ -2,11 +2,13 @@
   "type": "object",
   "required": [
     "name",
-    "description"
+    "description",
+    "dob",
+    "owner_id"
   ],
   "properties": {
     "id": {
-      "type": "integer"
+      "$ref": "../core.json#/definitions/dbid"
     },
     "name": {
       "type": "string",
@@ -15,7 +17,10 @@
       "description": "Pet name"
     },
     "description": {
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
       "minLength": 1,
       "maxLength": 1000
     },
@@ -23,6 +28,18 @@
       "type": "string",
       "format": "date",
       "default": "2000-01-01"
+    },
+    "owner_id": {
+      "type": "integer",
+      "minimum": 1,
+      "_db": {
+        "fk": {
+          "name": "owner",
+          "model": "person1.json",
+          "column": "id",
+          "onDelete": "CASCADE"
+        }
+      }
     }
   },
   "_db": {
@@ -34,5 +51,30 @@
         ]
       }
     ]
-  }
+  },
+  "base": "https://cdeno.org/",
+  "links": [
+    {
+      "rel": "self",
+      "href": "pet/{id}",
+      "templateRequired": [
+        "id"
+      ],
+      "targetMediaType": "application/json",
+      "targetSchema": {
+        "$ref": "#"
+      }
+    },
+    {
+      "rel": "self",
+      "href": "pet/{id}",
+      "templateRequired": [
+        "id"
+      ],
+      "targetMediaType": "application/json",
+      "targetSchema": {
+        "$ref": "#"
+      }
+    }
+  ]
 }

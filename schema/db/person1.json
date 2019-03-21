@@ -9,8 +9,7 @@
   "required": [
     "first_name",
     "last_name",
-    "ni",
-    "pet"
+    "ni"
   ],
   "properties": {
     "id": {
@@ -74,15 +73,6 @@
     },
     "latlng": {
       "$ref": "../latlng.json"
-    },
-    "pet": {
-      "type": "integer",
-      "minimum": 1,
-      "_db": {
-        "fk": {
-          "to": "./pet.json"
-        }
-      }
     }
   },
   "_db": {

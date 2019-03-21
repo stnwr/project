@@ -1,4 +1,5 @@
 import fs from 'fs'
+import assert from 'assert'
 import path from 'path'
 import Knex from 'knex'
 
@@ -20,7 +21,7 @@ export function createTableFromSchema ({ schema, refs, path, paths }) {
       // Indexes
       if (Array.isArray(_db.indexes)) {
         _db.indexes.forEach(index => {
-          table[index.unique ? 'unique' : 'index'](index.columns, index.columns.join('__'))
+          table[index.unique ? 'unique' : 'index'](index.columns)
         })
       }
     })
@@ -31,29 +32,38 @@ export function createColumnFromProperty (table, key, schema, refs) {
   const { properties, required = [] } = schema
   let property = properties[key]
   let nullable = !required.includes(key)
-  const { $ref } = property
+  // const { $ref } = property
 
-  if ($ref) {
-    // Property has a $ref
-    const ref = refs.get($ref)
-    // const defsPrefix = '#/definitions/'
-    // $ref.startsWith(defsPrefix)
-    const isDBModel = $ref.startsWith('./')
-    if (isDBModel) {
-      // Relative (model) reference
-      const resolvedRef = refs.get($ref)
+  // if ($ref) {
+  //   // Property has a $ref
+  //   const ref = refs.get($ref)
+  //   // const defsPrefix = '#/definitions/'
+  //   // $ref.startsWith(defsPrefix)
+  //   const isDBModel = $ref.startsWith('./')
+  //   if (isDBModel) {
+  //     // Relative (model) reference
+  //     const resolvedRef = refs.get($ref)
 
-      property = {
-        type: 'integer',
-        _db: {
-          unsigned: true,
-          fk: { table: resolvedRef._db.name, column: 'id', onDelete: 'CASCADE' }
-        }
-      }
-    } else {
-      // File (definitions) reference
-      property = ref
-    }
+  //     property = {
+  //       type: 'integer',
+  //       _db: {
+  //         unsigned: true,
+  //         fk: { table: resolvedRef._db.name, column: 'id', onDelete: 'CASCADE' }
+  //       }
+  //     }
+  //   } else {
+  //     // File (definitions) reference
+  //     property = ref
+  //   }
+  // }
+
+  if (Array.isArray(property.type)) {
+    const types = property.type
+    assert.strictEqual(types.length, 2)
+    const notNullTypes = types.filter(type => type !== 'null')
+    assert.strictEqual(notNullTypes.length, 1)
+    property.type = notNullTypes[0]
+    nullable = true
   }
 
   const { _db = {}, type } = property
@@ -72,7 +82,7 @@ export function createColumnFromProperty (table, key, schema, refs) {
   } else if (type === 'number') {
 
   } else if (type === 'integer') {
-    if ('unsigned' in _db) {
+    if (_db.unsigned) {
       chain = chain.unsigned()
     }
   }
@@ -83,8 +93,9 @@ export function createColumnFromProperty (table, key, schema, refs) {
 
   if (_db.fk) {
     chain
+      .unsigned()
       .references(_db.fk.column)
-      .inTable(_db.fk.table)
+      .inTable(_db.fk.model.replace('.json', ''))
       .onDelete(_db.fk.onDelete)
   }
 
@@ -173,10 +184,26 @@ async function resolveSchema (path) {
 async function resolveSchemas (dir) {
   // Load all schemas from a directory
   const files = await readdir(dir)
-  // const ignore = ['definitions.json']
+
   const promises = files
-    // .filter(f => !ignore.includes(f))
     .map(f => resolveSchema(path.join(dir, f)))
+
+  return Promise.all(promises)
+}
+
+async function deferenceSchema (schemapath) {
+  return parser.dereference(schemapath)
+}
+
+async function dereferenceSchemas (dir) {
+  // Load all schemas from a directory
+  const files = await readdir(dir)
+  const promises = files.map(file => {
+    const fullpath = path.join(dir, file)
+    return parser.dereference(fullpath).then(schema => {
+      return { file, schema }
+    })
+  })
 
   return Promise.all(promises)
 }
@@ -196,20 +223,61 @@ function sorter (a, b) {
   return 0
 }
 
+function schemaRelations (schema) {
+  const relations = []
+
+  Object.keys(schema.properties).forEach(key => {
+    const property = schema.properties[key]
+
+    if (property.type === 'integer') {
+      if (property._db) {
+        if (property._db.fk) {
+          relations.push(property._db.fk.model)
+        }
+      }
+    }
+  })
+
+  return relations
+}
+
+function sorter1 (a, b) {
+  const aRefs = schemaRelations(a.schema)
+  const bRefs = schemaRelations(b.schema)
+  const aRefsB = aRefs.includes(b.file)
+  const bRefsA = bRefs.includes(a.file)
+
+  if (aRefsB && bRefsA) {
+    throw new Error('TODO: Deal with circular refs')
+  } else if (aRefsB) {
+    return 1
+  } else if (bRefsA) {
+    return -1
+  }
+
+  return 0
+}
+
 async function test () {
   try {
-    // await processSchema('pet.json')
-    // await processSchema('person.json')
-    const schemaDir = path.join(__dirname, 'schema/db')
-    const schemas = await resolveSchemas(schemaDir)
+    const schemadir = path.join(__dirname, 'schema/db')
+    // const schemas = await resolveSchemas(schemadir)
+
+    const schemas = await dereferenceSchemas(schemadir)
 
     // Sort schemas
-    schemas.sort(sorter)
-    // Process schema
-    const processors = schemas.map(processSchema)
-    const result = await Promise.all(processors)
+    schemas.sort(sorter1)
 
-    console.log(result)
+    // Process schema
+    // const processors = schemas.map(processSchema)
+    // const result = await Promise.all(processors)
+
+    for (const schema of schemas) {
+      const result = await processSchema(schema)
+      console.log(result)
+    }
+
+    // console.log(result)
   } catch (err) {
     console.error(err)
   }

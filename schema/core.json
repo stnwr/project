@@ -1,8 +1,8 @@
 {
   "definitions": {
-    "age": {
+    "dbid": {
       "type": "integer",
-      "default": 18
+      "minimum": 1
     }
   }
 }
