@@ -74,22 +74,5 @@
     "latlng": {
       "$ref": "../latlng.json"
     }
-  },
-  "_db": {
-    "name": "person1",
-    "indexes": [
-      {
-        "columns": [
-          "first_name",
-          "last_name"
-        ]
-      },
-      {
-        "columns": [
-          "ni"
-        ],
-        "unique": true
-      }
-    ]
   }
 }

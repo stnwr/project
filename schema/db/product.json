@@ -1,34 +1,36 @@
 {
   "type": "object",
   "required": [
-    "id",
+    "code",
     "name",
     "description",
-    "content"
+    "price"
   ],
   "properties": {
     "id": {
       "type": "integer"
     },
+    "code": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "description": "Product code"
+    },
     "name": {
       "type": "string",
       "minLength": 1,
       "maxLength": 255,
-      "description": "Schema name"
+      "description": "Product name"
     },
     "description": {
       "type": "string",
       "minLength": 1,
       "maxLength": 1000,
-      "description": "Schema description"
+      "description": "Product description"
     },
-    "content": {
-      "type": "object"
-    },
-    "timestamp": {
-      "type": "string",
-      "format": "date-time",
-      "default": "now"
+    "price": {
+      "type": "number",
+      "minimum": 0.1
     }
   }
 }

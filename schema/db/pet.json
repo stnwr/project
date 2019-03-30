@@ -30,27 +30,8 @@
       "default": "2000-01-01"
     },
     "owner_id": {
-      "type": "integer",
-      "minimum": 1,
-      "_db": {
-        "fk": {
-          "name": "owner",
-          "model": "person1.json",
-          "column": "id",
-          "onDelete": "CASCADE"
-        }
-      }
+      "$ref": "../core.json#/definitions/dbid"
     }
-  },
-  "_db": {
-    "name": "pet",
-    "indexes": [
-      {
-        "columns": [
-          "name"
-        ]
-      }
-    ]
   },
   "base": "https://cdeno.org/",
   "links": [

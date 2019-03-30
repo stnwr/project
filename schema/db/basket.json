@@ -1,0 +1,14 @@
+{
+  "type": "object",
+  "required": [
+    "customer_id"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "../core.json#/definitions/dbid"
+    },
+    "customer_id": {
+      "$ref": "../core.json#/definitions/dbid"
+    }
+  }
+}
