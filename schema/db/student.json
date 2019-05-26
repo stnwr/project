@@ -1,0 +1,35 @@
+{
+  "type": "object",
+  "description": "Student",
+  "required": [
+    "name",
+    "description",
+    "age",
+    "type_id"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "../core.json#/definitions/dbid"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "description": "Student name"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000,
+      "description": "Student description"
+    },
+    "age": {
+      "type": "integer",
+      "description": "Student age"
+    },
+    "type_id": {
+      "$ref": "../core.json#/definitions/dbid",
+      "description": "Student type"
+    }
+  }
+}

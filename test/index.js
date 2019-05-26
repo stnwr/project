@@ -65,13 +65,13 @@ async function createOrders (models) {
     basket_id: basket.id,
     product_id: milk.id,
     quantity: 2
-  }, models.Basketline)
+  }, models.BasketLine)
 
   const line2 = await assertInsert({
     basket_id: basket.id,
     product_id: bread.id,
     quantity: 1
-  }, models.Basketline)
+  }, models.BasketLine)
 
   const gotCustomer = await models.Customer
     .query()
@@ -84,7 +84,7 @@ async function createOrders (models) {
     // .eager('lines')
     .findById(basket.id)
 
-  const gotBasketLine = await models.Basketline
+  const gotBasketLine = await models.BasketLine
     .query()
     .eager('product')
     // .eager('lines')

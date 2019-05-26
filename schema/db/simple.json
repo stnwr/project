@@ -1,0 +1,56 @@
+{
+  "type": "object",
+  "description": "Simple",
+  "required": [
+    "name",
+    "description",
+    "content"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "../core.json#/definitions/dbid"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "description": "Simple name"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000,
+      "description": "Simple description"
+    },
+    "content": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000,
+      "description": "Simple content"
+    },
+    "age": {
+      "type": "integer",
+      "description": "Simple age",
+      "minimum": 0,
+      "maximum": 150
+    },
+    "flag": {
+      "type": "boolean",
+      "title": "Done?",
+      "description": "Simple flag"
+    },
+    "price": {
+      "type": "number",
+      "description": "Simple price"
+    },
+    "agree_terms": {
+      "type": "boolean",
+      "title": "T&C",
+      "description": "I agree to the Terms and Conditions",
+      "enumNames": [
+        "Yes",
+        "No"
+      ]
+    }
+  }
+}

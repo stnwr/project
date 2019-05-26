@@ -1,0 +1,8 @@
+{
+  "$id": "https://mysite.com/latlng.json",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Timestamp",
+  "description": "An ISO-8601 date field",
+  "type": "string",
+  "format": "date-time"
+}

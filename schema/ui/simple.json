@@ -1,0 +1,32 @@
+{
+  "id": {
+    "ui:widget": "hidden"
+  },
+  "name": {
+    "ui:title": "Name",
+    "ui:autofocus": true,
+    "ui:emptyValue": ""
+  },
+  "description": {
+    "ui:title": "Description",
+    "ui:widget": "textarea"
+  }, 
+  "content": {
+    "ui:title": "Content",
+    "ui:emptyValue": ""
+  },
+  "age": {
+    "ui:title": "Age",
+    "ui:description": "(earthian year)",
+    "ui:widget": "updown"
+  },
+  "flag": {
+    "$ref": "./common/flag.json"
+  },
+  "price": {
+    "ui:title": "Price"
+  },
+  "agree_terms": {
+    "ui:widget": "radio"
+  }
+}

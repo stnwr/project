@@ -1,0 +1,37 @@
+{
+  "id": {
+    "ui:widget": "hidden"
+  },
+  "title": {
+    "ui:title": "Title",
+    "ui:autofocus": true,
+    "ui:emptyValue": ""
+  },
+  "first_name": {
+    "ui:title": "First name"
+  }, 
+  "last_name": {
+    "ui:title": "Last name",
+    "ui:emptyValue": ""
+  },
+  "ni": {
+    "ui:title": "NI Number",
+    "ui:description": "(earthian year)"
+  },
+  "address": {
+    "ui:title": "Address",
+    "ui:widget": "textarea",
+    "street": {
+      "ui:title": "Street",
+      "ui:description": "Street"
+    },
+    "zipCode": {
+      "ui:title": "Zipcode",
+      "ui:description": "Zipcode"
+    },
+    "city": {
+      "ui:title": "City",
+      "ui:description": "City"
+    }
+  }
+}

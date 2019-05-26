@@ -1,7 +1,10 @@
 {
+  "name": "Demo",
   "tables": [
     {
       "name": "pet",
+      "modelName": "Pet",
+      "displayName": "Pet",
       "schema": "pet.json",
       "indexes": [
         {
@@ -20,6 +23,8 @@
     },
     {
       "name": "person",
+      "modelName": "Person",
+      "displayName": "Person",
       "schema": "person.json",
       "indexes": [
         {
@@ -38,31 +43,57 @@
     },
     {
       "name": "customer",
+      "modelName": "Customer",
+      "displayName": "Customer",
       "schema": "customer.json"
     },
     {
       "name": "product",
+      "modelName": "Product",
+      "displayName": "Product",
       "schema": "product.json"
     },
     {
       "name": "basket",
+      "modelName": "Basket",
+      "displayName": "Basket",
       "schema": "basket.json"
     },
     {
       "name": "basketline",
+      "modelName": "BasketLine",
+      "displayName": "Basket Line",
       "schema": "basketline.json"
     },
     {
-      "name": "critic",
-      "schema": "critic.json"
+      "name": "simple",
+      "modelName": "Simple",
+      "displayName": "Simple",
+      "schema": "simple.json"
     },
     {
-      "name": "movie",
-      "schema": "movie.json"
+      "name": "student",
+      "modelName": "Student",
+      "displayName": "Student",
+      "schema": "student.json"
     },
     {
-      "name": "review",
-      "schema": "review.json"
+      "name": "course",
+      "modelName": "Course",
+      "displayName": "Course",
+      "schema": "course.json"
+    },
+    {
+      "name": "enrollment",
+      "modelName": "Enrollment",
+      "displayName": "Enrollment",
+      "schema": "enrollment.json"
+    },
+    {
+      "name": "student_type",
+      "modelName": "StudentType",
+      "displayName": "Student Type",
+      "schema": "student-type.json"
     }
   ],
   "relations": [
@@ -133,7 +164,7 @@
     {
       "name": "lines",
       "type": "HasMany",
-      "modelClass": "Basketline",
+      "modelClass": "BasketLine",
       "join": {
         "from": {
           "table": "basket",
@@ -177,57 +208,83 @@
         }
       },
       "onDelete": "CASCADE"
-    }, {
-      "name": "reviews",
-      "type": "ManyToMany",
-      "modelClass": "Movie",
+    },
+    {
+      "name": "student",
+      "type": "HasOne",
+      "modelClass": "Student",
       "join": {
         "from": {
-          "table": "critic",
-          "column": "id"
+          "table": "enrollment",
+          "column": "student_id"
         },
         "to": {
-          "table": "movie",
+          "table": "student",
           "column": "id"
-        },
-        "through": {
-          "from": {
-            "table": "review",
-            "column": "critic_id"
-          },
-          "to": {
-            "table": "review",
-            "column": "movie_id"
-          },
-          "extra": ["rating", "body"],
-          "modelClass": "Review"
         }
       },
       "onDelete": "CASCADE"
-    }, {
-      "name": "reviews",
-      "type": "ManyToMany",
-      "modelClass": "Critic",
+    },
+    {
+      "name": "course",
+      "type": "HasOne",
+      "modelClass": "Course",
       "join": {
         "from": {
-          "table": "movie",
+          "table": "enrollment",
+          "column": "course_id"
+        },
+        "to": {
+          "table": "course",
+          "column": "id"
+        }
+      },
+      "onDelete": "CASCADE"
+    },
+    {
+      "name": "enrollments",
+      "type": "HasMany",
+      "modelClass": "Enrollment",
+      "join": {
+        "from": {
+          "table": "student",
           "column": "id"
         },
         "to": {
-          "table": "critic",
+          "table": "enrollment",
+          "column": "student_id"
+        }
+      },
+      "onDelete": "CASCADE"
+    },
+    {
+      "name": "enrollments",
+      "type": "HasMany",
+      "modelClass": "Enrollment",
+      "join": {
+        "from": {
+          "table": "course",
           "column": "id"
         },
-        "through": {
-          "from": {
-            "table": "review",
-            "column": "movie_id"
-          },
-          "to": {
-            "table": "review",
-            "column": "critic_id"
-          },
-          "extra": ["rating", "body"],
-          "modelClass": "Review"
+        "to": {
+          "table": "enrollment",
+          "column": "course_id"
+        }
+      },
+      "onDelete": "CASCADE"
+    },
+    {
+      "name": "type",
+      "type": "HasOne",
+      "modelClass": "StudentType",
+      "join": {
+        "from": {
+          "table": "student",
+          "column": "type_id"
+        },
+        "to": {
+          "table": "student_type",
+          "column": "id"
         }
       },
       "onDelete": "CASCADE"

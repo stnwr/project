@@ -1,0 +1,20 @@
+{
+  "type": "object",
+  "description": "Student",
+  "required": [
+    "name"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "../core.json#/definitions/dbid"
+    },
+    "name": {
+      "type": "string",
+      "enum": [
+        "grad",
+        "postgrad"
+      ],
+      "description": "Student Type"
+    }
+  }
+}

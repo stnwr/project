@@ -1,0 +1,29 @@
+{
+  "type": "object",
+  "description": "Enrollment",
+  "required": [
+    "start",
+    "end",
+    "student_id",
+    "course_id"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "../core.json#/definitions/dbid"
+    },
+    "start": {
+      "type": "string",
+      "description": "Enrollment start"
+    },
+    "end": {
+      "type": "string",
+      "description": "Enrollment end"
+    },
+    "student_id": {
+      "$ref": "../core.json#/definitions/dbid"
+    },
+    "course_id": {
+      "$ref": "../core.json#/definitions/dbid"
+    }
+  }
+}

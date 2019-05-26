@@ -1,0 +1,19 @@
+{
+  "id": {
+    "ui:widget": "hidden"
+  },
+  "name": {
+    "ui:title": "Name",
+    "ui:autofocus": true
+  },
+  "description": {
+    "ui:title": "Description",
+    "ui:widget": "textarea"
+  }, 
+  "dob": {
+    "ui:title": "Date of birth"
+  },
+  "owner_id": {
+    "ui:widget": "hidden"
+  }
+}

@@ -7,6 +7,7 @@
   },
   "type": "object",
   "required": [
+    "title",
     "first_name",
     "last_name",
     "ni"
@@ -14,6 +15,16 @@
   "properties": {
     "id": {
       "type": "integer"
+    },
+    "title": {
+      "type": "string",
+      "enum": [
+        "Mr",
+        "Mrs",
+        "Miss",
+        "Ms"
+      ],
+      "default": "Mr"
     },
     "first_name": {
       "type": "string",
@@ -27,12 +38,12 @@
       "maxLength": 255
     },
     "description": {
-      "type": "string",
+      "type": [
+        "string",
+        "null"
+      ],
       "minLength": 1,
-      "maxLength": 1000,
-      "_db": {
-        "text": true
-      }
+      "maxLength": 1000
     },
     "age": {
       "$ref": "#/definitions/age"
@@ -42,23 +53,22 @@
       "format": "date",
       "default": "2000-01-01"
     },
-    "title": {
-      "type": "string",
-      "enum": [
-        "Mr",
-        "Mrs",
-        "Miss",
-        "Ms"
-      ],
-      "default": "Mr"
-    },
     "ni": {
       "type": "string",
       "minLength": 8,
       "maxLength": 11
     },
     "address": {
-      "type": "object",
+      "required": [
+        "street",
+        "city",
+        "zip_code",
+        "built_at"
+      ],
+      "type": [
+        "object",
+        "null"
+      ],
       "properties": {
         "street": {
           "type": "string"
@@ -66,8 +76,12 @@
         "city": {
           "type": "string"
         },
-        "zipCode": {
+        "zip_code": {
           "type": "string"
+        },
+        "built_at": {
+          "type": "string",
+          "format": "date-time"
         }
       }
     },

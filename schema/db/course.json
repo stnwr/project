@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "description": "Course",
+  "required": [
+    "name",
+    "description",
+    "content"
+  ],
+  "properties": {
+    "id": {
+      "$ref": "../core.json#/definitions/dbid"
+    },
+    "name": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 255,
+      "description": "Course name"
+    },
+    "description": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 1000,
+      "description": "Course description"
+    },
+    "content": {
+      "type": "string",
+      "description": "Course content"
+    }
+  }
+}
