@@ -20,10 +20,10 @@
   },
   "address": {
     "ui:title": "Address",
-    "ui:widget": "textarea",
     "street": {
       "ui:title": "Street",
-      "ui:description": "Street"
+      "ui:description": "Street",
+      "ui:widget": "textarea"
     },
     "zipCode": {
       "ui:title": "Zipcode",

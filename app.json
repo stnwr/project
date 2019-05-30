@@ -1,10 +1,12 @@
 {
   "name": "Demo",
+  "domain": "demo.com",
   "tables": [
     {
       "name": "pet",
       "modelName": "Pet",
       "displayName": "Pet",
+      "description": "Pets data",
       "fields": [
         {
           "name": "id",
@@ -59,6 +61,7 @@
       "name": "person",
       "modelName": "Person",
       "displayName": "Person",
+      "description": "Person data",
       "fields": [
         {
           "name": "id",
@@ -138,6 +141,7 @@
       "name": "simple",
       "modelName": "Simple",
       "displayName": "Simple",
+      "description": "Simple data",
       "fields": [
         {
           "name": "id",
@@ -209,6 +213,7 @@
       "name": "customer",
       "modelName": "Customer",
       "displayName": "Customer",
+      "description": "Customer data",
       "fields": [
         {
           "name": "id",
@@ -268,6 +273,7 @@
       "name": "product",
       "modelName": "Product",
       "displayName": "Product",
+      "description": "Product data",
       "fields": [
         {
           "name": "id",
@@ -305,6 +311,7 @@
       "name": "basket",
       "modelName": "Basket",
       "displayName": "Basket",
+      "description": "Basket data",
       "fields": [
         {
           "name": "id",
@@ -336,6 +343,7 @@
       "name": "basketLine",
       "modelName": "BasketLine",
       "displayName": "Basket line",
+      "description": "Basket line data",
       "fields": [
         {
           "name": "id",
@@ -375,6 +383,7 @@
       "name": "student",
       "modelName": "Student",
       "displayName": "Student",
+      "description": "Student data",
       "fields": [
         {
           "name": "id",
@@ -425,6 +434,7 @@
       "name": "course",
       "modelName": "Course",
       "displayName": "Course",
+      "description": "Course data",
       "fields": [
         {
           "name": "id",
@@ -463,6 +473,7 @@
       "name": "enrollment",
       "modelName": "Enrollment",
       "displayName": "Enrollment",
+      "description": "Enrollment data",
       "fields": [
         {
           "name": "id",
@@ -508,6 +519,7 @@
       "name": "studentType",
       "modelName": "StudentType",
       "displayName": "Student type",
+      "description": "Student type data",
       "fields": [
         {
           "name": "id",
