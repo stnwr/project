@@ -5,7 +5,8 @@
     {
       "name": "pet",
       "modelName": "Pet",
-      "displayName": "Pet",
+      "modelPath": "pet.js",
+      "title": "Pet",
       "description": "Pets data",
       "fields": [
         {
@@ -17,7 +18,8 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 255,
-          "description": "Pet name"
+          "description": "Pet name",
+          "title": "Pet name"
         },
         {
           "name": "description",
@@ -25,19 +27,22 @@
           "nullable": true,
           "minLength": 1,
           "maxLength": 1000,
-          "description": "Pet description"
+          "description": "Pet description",
+          "title": "Pet description"
         },
         {
           "name": "dob",
           "type": "date",
           "default": "2000-01-01",
           "maxLength": 1000,
-          "description": "Pet date of birth"
+          "description": "Pet date of birth",
+          "title": "Pet date of birth"
         },
         {
           "name": "ownerId",
           "type": "id",
-          "description": "Owner"
+          "description": "Owner",
+          "title": "Owner"
         },
         {
           "name": "owner",
@@ -46,7 +51,8 @@
           "from": "ownerId",
           "table": "person",
           "to": "id",
-          "onDelete": "CASCADE"
+          "onDelete": "CASCADE",
+          "title": "Owner"
         }
       ],
       "indexes": [
@@ -60,7 +66,8 @@
     {
       "name": "person",
       "modelName": "Person",
-      "displayName": "Person",
+      "modelPath": "person.js",
+      "title": "Person",
       "description": "Person data",
       "fields": [
         {
@@ -77,7 +84,7 @@
             "Ms"
           ],
           "default": "Mr",
-          "title": "Name",
+          "title": "Person title",
           "description": "Person title"
         },
         {
@@ -85,7 +92,7 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 255,
-          "title": "First name",
+          "title": "Person first name",
           "description": "Person first name"
         },
         {
@@ -93,12 +100,13 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 255,
-          "description": "Person last name"
+          "description": "Person last name",
+          "title": "Person last name"
         },
         {
           "name": "age",
           "type": "integer",
-          "title": "Age",
+          "title": "Person age",
           "description": "Person age"
         },
         {
@@ -106,12 +114,14 @@
           "type": "string",
           "minLength": 8,
           "maxLength": 11,
-          "description": "National Insurance Number"
+          "description": "National Insurance Number",
+          "title": "National Insurance Number"
         },
         {
           "name": "latLong",
           "type": "json",
-          "ref": "./latlng.json"
+          "ref": "./latlng.json",
+          "title": "LatLong"
         },
         {
           "name": "pets",
@@ -119,7 +129,8 @@
           "kind": "HasMany",
           "from": "id",
           "table": "pet",
-          "to": "ownerId"
+          "to": "ownerId",
+          "title": "Pets"
         }
       ],
       "indexes": [
@@ -140,7 +151,8 @@
     {
       "name": "simple",
       "modelName": "Simple",
-      "displayName": "Simple",
+      "modelPath": "simple.js",
+      "title": "Simple",
       "description": "Simple data",
       "fields": [
         {
@@ -152,55 +164,62 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 255,
-          "description": "Simple name"
+          "description": "Simple name",
+          "title": "Simple name"
         },
         {
           "name": "description",
           "type": "string",
           "minLength": 1,
           "maxLength": 1000,
-          "description": "Simple description"
+          "description": "Simple description",
+          "title": "Simple description"
         },
         {
           "name": "content",
           "type": "string",
           "minLength": 1,
           "maxLength": 1000,
-          "description": "Simple content"
+          "description": "Simple content",
+          "title": "Simple content"
         },
         {
           "name": "age",
           "type": "integer",
           "description": "Simple age",
           "minimum": 0,
-          "maximum": 150
+          "maximum": 150,
+          "title": "Simple age"
         },
         {
           "name": "flag",
           "type": "boolean",
-          "title": "Done?",
+          "title": "Simple flag",
           "description": "Simple flag"
         },
         {
           "name": "price",
           "type": "number",
-          "description": "Simple price"
+          "description": "Simple price",
+          "title": "Simple price"
         },
         {
           "name": "purchasedAt",
           "type": "datetime",
-          "description": "Simple datetime"
+          "description": "Simple datetime",
+          "title": "Simple datetime"
         },
         {
           "name": "email",
           "type": "string",
           "format": "email",
-          "description": "Simple email"
+          "description": "Simple email",
+          "title": "Simple email"
         },
         {
           "name": "agreeTerms",
           "type": "boolean",
-          "title": "T&C",
+          "title": "I agree to the Terms and Conditions",
           "description": "I agree to the Terms and Conditions",
           "enumNames": [
             "Yes",
@@ -212,7 +231,8 @@
     {
       "name": "customer",
       "modelName": "Customer",
-      "displayName": "Customer",
+      "modelPath": "customer.js",
+      "title": "Customer",
       "description": "Customer data",
       "fields": [
         {
@@ -229,7 +249,7 @@
             "Ms"
           ],
           "default": "Mr",
-          "title": "Name",
+          "title": "Person title",
           "description": "Person title"
         },
         {
@@ -237,7 +257,7 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 255,
-          "title": "First name",
+          "title": "Person first name",
           "description": "Person first name"
         },
         {
@@ -245,19 +265,22 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 255,
-          "description": "Person last name"
+          "description": "Person last name",
+          "title": "Person last name"
         },
         {
           "name": "ni",
           "type": "string",
           "minLength": 8,
           "maxLength": 11,
-          "description": "National Insurance Number"
+          "description": "National Insurance Number",
+          "title": "National Insurance Number"
         },
         {
           "name": "address",
           "type": "json",
-          "ref": "./address.json"
+          "ref": "./address.json",
+          "title": "Address"
         },
         {
           "name": "basket",
@@ -265,14 +288,16 @@
           "kind": "HasOne",
           "from": "id",
           "table": "basket",
-          "to": "customerId"
+          "to": "customerId",
+          "title": "Basket"
         }
       ]
     },
     {
       "name": "product",
       "modelName": "Product",
-      "displayName": "Product",
+      "modelPath": "product.js",
+      "title": "Product",
       "description": "Product data",
       "fields": [
         {
@@ -284,33 +309,38 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 255,
-          "description": "Product code"
+          "description": "Product code",
+          "title": "Product code"
         },
         {
           "name": "name",
           "type": "string",
           "minLength": 1,
           "maxLength": 255,
-          "description": "Product name"
+          "description": "Product name",
+          "title": "Product name"
         },
         {
           "name": "description",
           "type": "string",
           "minLength": 1,
           "maxLength": 1000,
-          "description": "Product description"
+          "description": "Product description",
+          "title": "Product description"
         },
         {
           "name": "price",
           "type": "number",
-          "minimum": 0.1
+          "minimum": 0.1,
+          "title": "Price"
         }
       ]
     },
     {
       "name": "basket",
       "modelName": "Basket",
-      "displayName": "Basket",
+      "modelPath": "basket.js",
+      "title": "Basket",
       "description": "Basket data",
       "fields": [
         {
@@ -319,7 +349,8 @@
         },
         {
           "name": "customerId",
-          "type": "id"
+          "type": "id",
+          "title": "CustomerId"
         },
         {
           "name": "customer",
@@ -327,7 +358,8 @@
           "kind": "BelongsToOne",
           "from": "customerId",
           "table": "customer",
-          "to": "id"
+          "to": "id",
+          "title": "Customer"
         },
         {
           "name": "lines",
@@ -335,14 +367,16 @@
           "kind": "HasMany",
           "from": "id",
           "table": "basketLine",
-          "to": "basketId"
+          "to": "basketId",
+          "title": "Lines"
         }
       ]
     },
     {
       "name": "basketLine",
       "modelName": "BasketLine",
-      "displayName": "Basket line",
+      "modelPath": "basketline.js",
+      "title": "Basket line",
       "description": "Basket line data",
       "fields": [
         {
@@ -351,15 +385,18 @@
         },
         {
           "name": "basketId",
-          "type": "id"
+          "type": "id",
+          "title": "BasketId"
         },
         {
           "name": "productId",
-          "type": "id"
+          "type": "id",
+          "title": "ProductId"
         },
         {
           "name": "quantity",
-          "type": "integer"
+          "type": "integer",
+          "title": "Quantity"
         },
         {
           "name": "basket",
@@ -367,7 +404,8 @@
           "kind": "BelongsToOne",
           "from": "basketId",
           "table": "basket",
-          "to": "id"
+          "to": "id",
+          "title": "Basket"
         },
         {
           "name": "product",
@@ -375,14 +413,16 @@
           "kind": "BelongsToOne",
           "from": "productId",
           "table": "product",
-          "to": "id"
+          "to": "id",
+          "title": "Product"
         }
       ]
     },
     {
       "name": "student",
       "modelName": "Student",
-      "displayName": "Student",
+      "modelPath": "student.js",
+      "title": "Student",
       "description": "Student data",
       "fields": [
         {
@@ -394,23 +434,27 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 255,
-          "description": "Student name"
+          "description": "Student name",
+          "title": "Student name"
         },
         {
           "name": "description",
           "type": "string",
           "minLength": 1,
           "maxLength": 1000,
-          "description": "Student description"
+          "description": "Student description",
+          "title": "Student description"
         },
         {
           "name": "age",
           "type": "integer",
-          "description": "Student age"
+          "description": "Student age",
+          "title": "Student age"
         },
         {
           "name": "typeId",
-          "type": "id"
+          "type": "id",
+          "title": "TypeId"
         },
         {
           "name": "type",
@@ -418,7 +462,8 @@
           "kind": "BelongsToOne",
           "from": "typeId",
           "table": "studentType",
-          "to": "id"
+          "to": "id",
+          "title": "Type"
         },
         {
           "name": "enrollments",
@@ -426,14 +471,16 @@
           "kind": "HasMany",
           "from": "id",
           "table": "enrollment",
-          "to": "studentId"
+          "to": "studentId",
+          "title": "Enrollments"
         }
       ]
     },
     {
       "name": "course",
       "modelName": "Course",
-      "displayName": "Course",
+      "modelPath": "course.js",
+      "title": "Course",
       "description": "Course data",
       "fields": [
         {
@@ -445,19 +492,22 @@
           "type": "string",
           "minLength": 1,
           "maxLength": 255,
-          "description": "Course name"
+          "description": "Course name",
+          "title": "Course name"
         },
         {
           "name": "description",
           "type": "string",
           "minLength": 1,
           "maxLength": 1000,
-          "description": "Course description"
+          "description": "Course description",
+          "title": "Course description"
         },
         {
           "name": "content",
           "type": "string",
-          "description": "Course content"
+          "description": "Course content",
+          "title": "Course content"
         },
         {
           "name": "enrollments",
@@ -465,14 +515,16 @@
           "kind": "HasMany",
           "from": "id",
           "table": "enrollment",
-          "to": "courseId"
+          "to": "courseId",
+          "title": "Enrollments"
         }
       ]
     },
     {
       "name": "enrollment",
       "modelName": "Enrollment",
-      "displayName": "Enrollment",
+      "modelPath": "enrollment.js",
+      "title": "Enrollment",
       "description": "Enrollment data",
       "fields": [
         {
@@ -482,20 +534,24 @@
         {
           "name": "start",
           "type": "date",
-          "description": "Enrollment start"
+          "description": "Enrollment start",
+          "title": "Enrollment start"
         },
         {
           "name": "end",
           "type": "date",
-          "description": "Enrollment end"
+          "description": "Enrollment end",
+          "title": "Enrollment end"
         },
         {
           "name": "studentId",
-          "type": "id"
+          "type": "id",
+          "title": "StudentId"
         },
         {
           "name": "courseId",
-          "type": "id"
+          "type": "id",
+          "title": "CourseId"
         },
         {
           "name": "student",
@@ -503,7 +559,8 @@
           "kind": "BelongsToOne",
           "from": "studentId",
           "table": "student",
-          "to": "id"
+          "to": "id",
+          "title": "Student"
         },
         {
           "name": "course",
@@ -511,14 +568,16 @@
           "kind": "BelongsToOne",
           "from": "courseId",
           "table": "course",
-          "to": "id"
+          "to": "id",
+          "title": "Course"
         }
       ]
     },
     {
       "name": "studentType",
       "modelName": "StudentType",
-      "displayName": "Student type",
+      "modelPath": "student-type.js",
+      "title": "Student type",
       "description": "Student type data",
       "fields": [
         {
@@ -532,7 +591,8 @@
             "grad",
             "postgrad"
           ],
-          "description": "Student Type"
+          "description": "Student Type",
+          "title": "Student Type"
         }
       ]
     }
