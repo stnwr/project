@@ -8,6 +8,7 @@
       "modelPath": "pet.js",
       "title": "Pet",
       "description": "Pets data",
+      "defaultTextField": "name",
       "fields": [
         {
           "name": "id",
@@ -69,6 +70,7 @@
       "modelPath": "person.js",
       "title": "Person",
       "description": "Person data",
+      "defaultTextField": "fullName",
       "fields": [
         {
           "name": "id",
@@ -91,7 +93,7 @@
           "name": "firstName",
           "type": "string",
           "minLength": 1,
-          "maxLength": 255,
+          "maxLength": 50,
           "title": "Person first name",
           "description": "Person first name"
         },
@@ -99,7 +101,7 @@
           "name": "lastName",
           "type": "string",
           "minLength": 1,
-          "maxLength": 255,
+          "maxLength": 50,
           "description": "Person last name",
           "title": "Person last name"
         },
@@ -131,6 +133,15 @@
           "table": "pet",
           "to": "ownerId",
           "title": "Pets"
+        },
+        {
+          "name": "fullName",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 100,
+          "description": "Full name",
+          "title": "Full name",
+          "virtual": true
         }
       ],
       "indexes": [
@@ -154,6 +165,7 @@
       "modelPath": "simple.js",
       "title": "Simple",
       "description": "Simple data",
+      "defaultTextField": "name",
       "fields": [
         {
           "name": "id",
@@ -234,6 +246,7 @@
       "modelPath": "customer.js",
       "title": "Customer",
       "description": "Customer data",
+      "defaultTextField": "lastName",
       "fields": [
         {
           "name": "id",
@@ -299,6 +312,7 @@
       "modelPath": "product.js",
       "title": "Product",
       "description": "Product data",
+      "defaultTextField": "longDescription",
       "fields": [
         {
           "name": "id",
@@ -333,6 +347,15 @@
           "type": "number",
           "minimum": 0.1,
           "title": "Price"
+        },
+        {
+          "name": "longDescription",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255,
+          "description": "Long description",
+          "title": "Long description",
+          "virtual": true
         }
       ]
     },
@@ -424,6 +447,7 @@
       "modelPath": "student.js",
       "title": "Student",
       "description": "Student data",
+      "defaultTextField": "name",
       "fields": [
         {
           "name": "id",
@@ -482,6 +506,7 @@
       "modelPath": "course.js",
       "title": "Course",
       "description": "Course data",
+      "defaultTextField": "name",
       "fields": [
         {
           "name": "id",
@@ -526,6 +551,7 @@
       "modelPath": "enrollment.js",
       "title": "Enrollment",
       "description": "Enrollment data",
+      "defaultTextField": "lastName",
       "fields": [
         {
           "name": "id",
@@ -579,6 +605,7 @@
       "modelPath": "student-type.js",
       "title": "Student type",
       "description": "Student type data",
+      "defaultTextField": "name",
       "fields": [
         {
           "name": "id",
