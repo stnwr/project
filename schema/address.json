@@ -11,12 +11,15 @@
   "type": "object",
   "properties": {
     "city": {
+      "title": "City",
       "type": "string"
     },
     "street": {
+      "title": "Street",
       "type": "string"
     },
     "zipCode": {
+      "title": "Zip code",
       "type": "string"
     }
   }

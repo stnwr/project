@@ -1,0 +1,204 @@
+{
+  "name": "nearlife",
+  "domain": "near-life.tech",
+  "tables": [
+    {
+      "name": "tenant",
+      "modelName": "Tenant",
+      "modelPath": "tenant.js",
+      "title": "Tenant",
+      "description": "Tenant data",
+      "defaultTextField": "name",
+      "primaryKeyField": [
+        "id"
+      ],
+      "fields": [
+        {
+          "name": "id",
+          "type": "id"
+        },
+        {
+          "name": "name",
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 255,
+          "description": "Tenant name",
+          "title": "Tenant name"
+        },
+        {
+          "name": "adminUserId",
+          "type": "fk",
+          "title": "Admin user Id",
+          "table": "user",
+          "field": "id"
+        },
+        {
+          "name": "adminUser",
+          "type": "relation",
+          "title": "Admin user",
+          "kind": "BelongsToOne",
+          "from": "adminUserId",
+          "table": "user",
+          "to": "id"
+        },
+        {
+          "name": "projects",
+          "type": "relation",
+          "title": "Projects",
+          "kind": "HasMany",
+          "from": "id",
+          "table": "project",
+          "to": "tenantId"
+        }
+      ],
+      "indexes": [
+        {
+          "columns": [
+            "name"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "project",
+      "title": "Project",
+      "modelName": "Project",
+      "description": "Project table",
+      "defaultTextField": "name",
+      "fields": [
+        {
+          "name": "id",
+          "title": "Id",
+          "type": "id"
+        },
+        {
+          "name": "name",
+          "title": "Name",
+          "type": "string"
+        },
+        {
+          "name": "tenantId",
+          "type": "fk",
+          "title": "Tenant Id",
+          "table": "tenant",
+          "field": "id"
+        },
+        {
+          "name": "tenant",
+          "type": "relation",
+          "title": "Tenant",
+          "kind": "BelongsToOne",
+          "from": "tenantId",
+          "table": "tenant",
+          "to": "id"
+        }
+      ],
+      "indexes": [
+        {
+          "columns": [
+            "name"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "projectMember",
+      "title": "Project member",
+      "modelName": "ProjectMember",
+      "description": "Project member table",
+      "fields": [
+        {
+          "name": "projectId",
+          "type": "fk",
+          "title": "Project id",
+          "table": "project",
+          "field": "id"
+        },
+        {
+          "name": "project",
+          "type": "relation",
+          "title": "Project",
+          "kind": "BelongsToOne",
+          "from": "projectId",
+          "table": "project",
+          "to": "id"
+        },
+        {
+          "name": "userId",
+          "type": "fk",
+          "title": "User id",
+          "table": "user",
+          "field": "id"
+        },
+        {
+          "name": "user",
+          "type": "relation",
+          "title": "User",
+          "kind": "BelongsToOne",
+          "from": "userId",
+          "table": "user",
+          "to": "id"
+        }
+      ]
+    },
+    {
+      "name": "user",
+      "title": "User",
+      "modelName": "User",
+      "description": "User table",
+      "fields": [
+        {
+          "name": "id",
+          "title": "Id",
+          "type": "id"
+        },
+        {
+          "name": "email",
+          "type": "string",
+          "title": "email",
+          "format": "email"
+        }
+      ]
+    },
+    {
+      "name": "tenantAdmin",
+      "title": "Tenant Admin",
+      "modelName": "TenantAdmin",
+      "description": "Tenant Admin table",
+      "fields": [
+        {
+          "name": "userId",
+          "type": "fk",
+          "title": "User Id",
+          "table": "user",
+          "field": "id"
+        },
+        {
+          "name": "user",
+          "type": "relation",
+          "title": "User",
+          "kind": "BelongsToOne",
+          "from": "userId",
+          "table": "user",
+          "to": "id"
+        },
+        {
+          "name": "tenantId",
+          "type": "fk",
+          "title": "Tenant Id",
+          "table": "tenant",
+          "field": "id"
+        },
+        {
+          "name": "tenant",
+          "type": "relation",
+          "title": "Tenant",
+          "kind": "BelongsToOne",
+          "from": "tenantId",
+          "table": "tenant",
+          "to": "id"
+        }
+      ]
+    }
+  ]
+}

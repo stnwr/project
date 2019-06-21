@@ -9,6 +9,9 @@
       "title": "Pet",
       "description": "Pets data",
       "defaultTextField": "name",
+      "primaryKeyField": [
+        "id"
+      ],
       "fields": [
         {
           "name": "id",
@@ -41,9 +44,12 @@
         },
         {
           "name": "ownerId",
-          "type": "id",
+          "type": "fk",
           "description": "Owner",
-          "title": "Owner"
+          "title": "Owner",
+          "table": "person",
+          "field": "id",
+          "cascadeOnDelete": true
         },
         {
           "name": "owner",
@@ -52,7 +58,6 @@
           "from": "ownerId",
           "table": "person",
           "to": "id",
-          "onDelete": "CASCADE",
           "title": "Owner"
         }
       ],
@@ -71,6 +76,9 @@
       "title": "Person",
       "description": "Person data",
       "defaultTextField": "fullName",
+      "primaryKeyField": [
+        "id"
+      ],
       "fields": [
         {
           "name": "id",
@@ -166,6 +174,9 @@
       "title": "Simple",
       "description": "Simple data",
       "defaultTextField": "name",
+      "primaryKeyField": [
+        "id"
+      ],
       "fields": [
         {
           "name": "id",
@@ -247,6 +258,9 @@
       "title": "Customer",
       "description": "Customer data",
       "defaultTextField": "lastName",
+      "primaryKeyField": [
+        "id"
+      ],
       "fields": [
         {
           "name": "id",
@@ -313,6 +327,9 @@
       "title": "Product",
       "description": "Product data",
       "defaultTextField": "longDescription",
+      "primaryKeyField": [
+        "id"
+      ],
       "fields": [
         {
           "name": "id",
@@ -365,6 +382,9 @@
       "modelPath": "basket.js",
       "title": "Basket",
       "description": "Basket data",
+      "primaryKeyField": [
+        "id"
+      ],
       "fields": [
         {
           "name": "id",
@@ -372,8 +392,11 @@
         },
         {
           "name": "customerId",
-          "type": "id",
-          "title": "CustomerId"
+          "type": "fk",
+          "title": "CustomerId",
+          "table": "customer",
+          "field": "id",
+          "cascadeOnDelete": true
         },
         {
           "name": "customer",
@@ -401,6 +424,9 @@
       "modelPath": "basketline.js",
       "title": "Basket line",
       "description": "Basket line data",
+      "primaryKeyField": [
+        "id"
+      ],
       "fields": [
         {
           "name": "id",
@@ -408,13 +434,19 @@
         },
         {
           "name": "basketId",
-          "type": "id",
-          "title": "BasketId"
+          "type": "fk",
+          "title": "BasketId",
+          "table": "basket",
+          "field": "id",
+          "cascadeOnDelete": true
         },
         {
           "name": "productId",
-          "type": "id",
-          "title": "ProductId"
+          "type": "fk",
+          "title": "ProductId",
+          "table": "product",
+          "field": "id",
+          "cascadeOnDelete": true
         },
         {
           "name": "quantity",
@@ -448,6 +480,9 @@
       "title": "Student",
       "description": "Student data",
       "defaultTextField": "name",
+      "primaryKeyField": [
+        "id"
+      ],
       "fields": [
         {
           "name": "id",
@@ -477,8 +512,11 @@
         },
         {
           "name": "typeId",
-          "type": "id",
-          "title": "TypeId"
+          "type": "fk",
+          "title": "TypeId",
+          "table": "studentType",
+          "field": "id",
+          "cascadeOnDelete": true
         },
         {
           "name": "type",
@@ -507,6 +545,9 @@
       "title": "Course",
       "description": "Course data",
       "defaultTextField": "name",
+      "primaryKeyField": [
+        "id"
+      ],
       "fields": [
         {
           "name": "id",
@@ -552,6 +593,9 @@
       "title": "Enrollment",
       "description": "Enrollment data",
       "defaultTextField": "lastName",
+      "primaryKeyField": [
+        "id"
+      ],
       "fields": [
         {
           "name": "id",
@@ -571,13 +615,19 @@
         },
         {
           "name": "studentId",
-          "type": "id",
-          "title": "StudentId"
+          "type": "fk",
+          "title": "StudentId",
+          "table": "student",
+          "field": "id",
+          "cascadeOnDelete": true
         },
         {
           "name": "courseId",
-          "type": "id",
-          "title": "CourseId"
+          "type": "fk",
+          "title": "CourseId",
+          "table": "course",
+          "field": "id",
+          "cascadeOnDelete": true
         },
         {
           "name": "student",
@@ -606,6 +656,9 @@
       "title": "Student type",
       "description": "Student type data",
       "defaultTextField": "name",
+      "primaryKeyField": [
+        "id"
+      ],
       "fields": [
         {
           "name": "id",
